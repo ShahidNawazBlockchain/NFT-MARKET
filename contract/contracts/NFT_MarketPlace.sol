@@ -94,3 +94,17 @@ function reSellToken(uint256 tokenId, uint256 price)public payable{
     _itemsSold.decrement();
     _transfer(msg.sender,address(this),tokenId);
 }
+function createMarketSale(uint256 tokenId)public payable{
+    uint256 price=idMarketItem[tokenId].price;
+    require(msg.value==price,"please submit the price in order to comlete the purchase");
+
+    idMarketItem[tokenId].owner=payable(msg.sender);
+    idMarketItem[tokenId].sold=true;
+    idMarketItem[tokenId].sold=payable(address(0));
+
+    _itemsSold.increment();
+    _transfer(address(this),msg.sender,tokenId);
+
+    payable(owner).transfer(listingPrice);
+    payable(idMarketItem[tokenId].seller).transfer(msg,.value);
+}
