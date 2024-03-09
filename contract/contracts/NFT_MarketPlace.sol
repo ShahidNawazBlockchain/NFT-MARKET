@@ -79,7 +79,8 @@ function createMarketItem(uint256 tokenId,uint256 price ) private{
         payable(msg.sender),
         payable(address(this)),
         price,
-        false, 
+        false
     );
-    
+   _transfer(msg.sender, address(this),tokenId);
+   emit idMarketItemCreated(tokenId, msg.sender,address(this),price, price);
 }
