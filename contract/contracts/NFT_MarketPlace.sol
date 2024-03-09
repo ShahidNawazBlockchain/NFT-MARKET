@@ -84,3 +84,13 @@ function createMarketItem(uint256 tokenId,uint256 price ) private{
    _transfer(msg.sender, address(this),tokenId);
    emit idMarketItemCreated(tokenId, msg.sender,address(this),price, price);
 }
+function reSellToken(uint256 tokenId, uint256 price)public payable{
+    require(idMarketItem[tokenId].owner==msg.sender,"Only item owner can perform this operation");
+    idMarketItem[tokenId].sold=false;
+    idMarketItem[tokenId].price=price;
+    idMarketItem[tokenId].seller=payable(msg.sender);
+    idMarketItem[tokenId].owner=payable(address(this));
+
+    _itemsSold.decrement();
+    _transfer(msg.sender,address(this),tokenId);
+}
