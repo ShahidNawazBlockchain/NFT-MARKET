@@ -20,4 +20,12 @@ contract NFT_MarketPlace is ERC721URIStorage {
       uint256 price;
       bool sold;
    }
+
+   event idMarketItemCreated(
+    uint256 indexed tokenId,
+    address seller,
+    address owner,
+    uint256 price,
+    bool,
+   );
 }
