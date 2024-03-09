@@ -59,3 +59,6 @@ public
 
 
 }
+function getListingPrice()public view returns(uint256){
+    returns listingPrice;
+}
