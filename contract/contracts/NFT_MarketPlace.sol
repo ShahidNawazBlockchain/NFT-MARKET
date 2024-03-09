@@ -9,7 +9,7 @@ contract NFT_MarketPlace is ERC721URIStorage {
 
    Counters.Counter private _tokenIds;
    Counters.Counter private _itemsSold;
-
+   uint256 listingPrice=0.0025 ether;
    address payable owner;
    mapping (uint256 => MarketItem) private idMarketItem;
 
@@ -28,4 +28,34 @@ contract NFT_MarketPlace is ERC721URIStorage {
     uint256 price,
     bool,
    );
+   modifier  onlyOwner {
+    require(msg.sender==owner,"Only owner of the marketplace can change the listing price");
+    _;
+   }
+
+   constructor() ERC721("NFT Metavarse Token","ArtBlocksHubNFT"){
+    owner=payable(msg.sender);
+   }
+
+function updateListingPrice(uint256 _ListingPrice)
+public
+ payable
+  onlyOwner
+   {
+    listingPrice=_ListingPrice;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
