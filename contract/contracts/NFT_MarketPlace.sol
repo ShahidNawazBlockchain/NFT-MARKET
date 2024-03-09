@@ -9,4 +9,15 @@ contract NFT_MarketPlace is ERC721URIStorage {
 
    Counters.Counter private _tokenIds;
    Counters.Counter private _itemsSold;
+
+   address payable owner;
+   mapping (uint256 => MarketItem) private idMarketItem;
+
+   struct MarketItem {
+      uint256 tokenId;
+      address payable seller;
+      address payable owner;
+      uint256 price;
+      bool sold;
+   }
 }
