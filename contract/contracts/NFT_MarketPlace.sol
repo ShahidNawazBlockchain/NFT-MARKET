@@ -145,17 +145,17 @@ function fetchMyNFT()public view returns(MarketItem[] memory){
     return items;
 }
 function fetchItemsListed()public view returns(MarketItem[] memory){
-uint256 totalCount=_tokenIds.current();
-uint256 itemCount=0;
-uint256 currentIndex=0;
+    uint256 totalCount=_tokenIds.current();
+    uint256 itemCount=0;
+    uint256 currentIndex=0;
 
-for(uint256 i=0;i<totalCount;i++){
+    for(uint256 i=0;i<totalCount;i++){
     if(idMarketItem[i+1].seller==msg.sender){
         itemCount+=1;
     }
-}
-MarketItem[] memory items = new MarketItem[](itemCount);
-for(uint256 i=0;i<totalCount;i++){
+
+   MarketItem[] memory items = new MarketItem[](itemCount);
+   for(uint256 i=0;i<totalCount;i++){
     if(idMarketItem[i+1].seller==msg.sender){
         uint256 currentId=i+1;
 
@@ -163,6 +163,7 @@ for(uint256 i=0;i<totalCount;i++){
         items[currentIndex]=currentItem;
         currentIndex+=1;
     }
+    }
+    return items;
 }
-return items;
 }
